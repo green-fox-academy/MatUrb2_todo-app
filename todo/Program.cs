@@ -15,52 +15,76 @@ namespace todo
             }
             else
             {
-
-                switch (args[0])
+                if (args[0] == "-l" || args[0] == "-a" || args[0] == "-r" || args[0] == "-c")
                 {
-                    case "-l":
-                        task.ShowList();
-                        break;
+                    switch (args[0])
+                    {
+                        case "-l":
+                            task.ShowList();
+                            break;
 
-                    case "-a":
-                        if (args.Length < 2)
-                        {
-                            Console.WriteLine("Unable to add: no task provided");
-                            Console.ReadLine();
-                        }
-                        else
-                        {
-                            task.AddTask(args[1]);
-                        }
-                        break;
-
-                    case "-r":
-                        if (args.Length < 2)
-                        {
-                            Console.WriteLine("Unable to remove: no index provided");
-                        }
-                        else if (int.TryParse(args[1], out int result))
-                        {
-                            if (task.TaskListCount() >= result && result > 0)
+                        case "-a":
+                            if (args.Length < 2)
                             {
-                                task.DeleteTask(result);
+                                Console.WriteLine("Unable to add: no task provided");
+                                Console.ReadLine();
                             }
                             else
                             {
-                                Console.WriteLine("Unable to remove: index is out of bound");
+                                task.AddTask(args[1]);
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Unable to remove: index is not a number");
-                        }
-                        break;
+                            break;
+
+                        case "-r":
+                            if (args.Length < 2)
+                            {
+                                Console.WriteLine("Unable to remove: no index provided");
+                            }
+                            else if (int.TryParse(args[1], out int result))
+                            {
+                                if (task.TaskListCount() >= result && result > 0)
+                                {
+                                    task.DeleteTask(result);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Unable to remove: index is out of bound");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Unable to remove: index is not a number");
+                            }
+                            break;
 
 
 
-                    case "-c":
-                        //code
-                        break;
+                        case "-c":
+                            if (args.Length < 2)
+                            {
+                                Console.WriteLine("Unable to remove: no index provided");
+                            }
+                            else if (int.TryParse(args[1], out int result))
+                            {
+                                if (task.TaskListCount() >= result && result > 0)
+                                {
+                                    task.CompleteTheTask(result);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Unable to remove: index is out of bound");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Unable to remove: index is not a number");
+                            }
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Unsupported argument");
                 }
             }
             Console.ReadLine();

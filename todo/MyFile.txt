@@ -1,2 +1,3 @@
-Walk the dog
-buy milk
+bla bla        - False
+thanks fro     - True
+thanks myself     - True
